@@ -21,9 +21,14 @@ public class TaskService : ITaskService
         _mapper = mapper;
     }
 
-    public Task Delete(Guid id)
+    public async Task DeleteCompletedTasks()
     {
-        throw new NotImplementedException();
+        var completedTasks = await _taskRepository.GetAllCompletedTasks();
+        foreach (var completedTask in completedTasks)
+        {
+            _taskRepository.Delete(completedTask);
+        }
+        await _unitOfWork.CommitAsync();
     }
 
     public async Task<IEnumerable<TaskModel>> FindAll()

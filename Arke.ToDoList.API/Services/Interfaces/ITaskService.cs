@@ -8,5 +8,5 @@ public interface ITaskService
     Task<TaskModel> FindById(Guid id);
     Task<TaskModel> Save(TaskModel taskModel);
     Task<TaskModel> Update(Guid id, TaskModel taskModel);
-    Task Delete(Guid id);
+    Task DeleteCompletedTasks();
 }

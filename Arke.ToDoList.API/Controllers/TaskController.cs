@@ -33,5 +33,12 @@ namespace Arke.ToDoList.API.Controllers
         {
             return StatusCode((int)HttpStatusCode.Created, await _service.Save(task));
         }
+
+        [HttpDelete("completed-tasks")]
+        public async Task<IActionResult> DeleteAllCompletedTasksAsync()
+        {
+            await _service.DeleteCompletedTasks();
+            return NoContent();
+        }
     }
 }

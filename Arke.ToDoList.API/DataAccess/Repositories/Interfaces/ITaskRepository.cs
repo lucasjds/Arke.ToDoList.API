@@ -4,4 +4,5 @@ namespace Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
 
 public interface ITaskRepository : IBaseRepository<TaskEntity>
 {
+    Task<IEnumerable<TaskEntity>> GetAllCompletedTasks();
 }
