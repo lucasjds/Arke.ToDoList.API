@@ -6,7 +6,7 @@ using System.Net;
 namespace Arke.ToDoList.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _service;
@@ -29,7 +29,7 @@ namespace Arke.ToDoList.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<TaskModel>> SaveTaskAsync(TaskModel task)
+        public async Task<ActionResult<TaskModel>> SaveTaskAsync([FromBody] TaskModel task)
         {
             return StatusCode((int)HttpStatusCode.Created, await _service.Save(task));
         }
