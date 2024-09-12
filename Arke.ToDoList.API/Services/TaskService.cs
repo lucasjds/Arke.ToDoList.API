@@ -37,9 +37,22 @@ public class TaskService : ITaskService
         return _mapper.Map<TaskModel>(existing);
     }
 
-    public Task<TaskModel> Save(TaskModel taskModel)
+    public async Task<TaskModel> Save(TaskModel taskModel)
     {
-        throw new NotImplementedException();
+        var taskEntity = await _taskRepository.Save(new TaskEntity());
+
+        taskModel.Id = taskEntity.Id;
+        _mapper.Map(taskModel, taskEntity);
+
+        var existing = await _taskRepository.FindById(taskEntity.Id);
+        if (existing != null)
+        {
+            throw new GeneralErrorException(nameof(taskModel.Id), "Id already exists in database.");
+        }
+
+        await _unitOfWork.CommitAsync();
+
+        return _mapper.Map<TaskModel>(taskEntity);
     }
 
     public Task<TaskModel> Update(Guid id, TaskModel taskModel)

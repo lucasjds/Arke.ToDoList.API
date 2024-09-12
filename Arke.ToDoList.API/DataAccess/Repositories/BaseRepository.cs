@@ -3,46 +3,45 @@ using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
 using Arke.ToDoList.API.Utils;
 using Microsoft.EntityFrameworkCore;
 
-namespace Arke.ToDoList.API.DataAccess.Repositories
+namespace Arke.ToDoList.API.DataAccess.Repositories;
+
+public class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    where TEntity : class, IEntity
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity>
-        where TEntity : class, IEntity
+    private readonly Lazy<DbSet<TEntity>> _dbSet;
+    private readonly DbContext _dbContext;
+
+    public BaseRepository(DatabaseContext dbContext)
     {
-        private readonly Lazy<DbSet<TEntity>> _dbSet;
-        private readonly DbContext _dbContext;
-
-        public BaseRepository(DatabaseContext dbContext)
+        if (dbContext == null)
         {
-            if (dbContext == null)
-            {
-                throw new ArgumentNullException(nameof(dbContext));
-            }
-
-            _dbSet = new Lazy<DbSet<TEntity>>(() => dbContext.Set<TEntity>());
-            _dbContext = dbContext;
+            throw new ArgumentNullException(nameof(dbContext));
         }
 
-        protected Lazy<DbSet<TEntity>> DbSet => _dbSet;
+        _dbSet = new Lazy<DbSet<TEntity>>(() => dbContext.Set<TEntity>());
+        _dbContext = dbContext;
+    }
 
-        public void Delete(TEntity entity)
-        {
-            DbSet.Value.Remove(entity);
-        }
+    protected Lazy<DbSet<TEntity>> DbSet => _dbSet;
 
-        public async Task<IEnumerable<TEntity>> FindAll()
-        {
-            return await DbSet.Value.ToListAsync();
-        }
+    public void Delete(TEntity entity)
+    {
+        DbSet.Value.Remove(entity);
+    }
 
-        public async Task<TEntity> FindById(Guid id)
-        {
-            return await DbSet.Value.FirstOrDefaultAsync(x => x.Id == id);
-        }
+    public async Task<IEnumerable<TEntity>> FindAll()
+    {
+        return await DbSet.Value.ToListAsync();
+    }
 
-        public async Task<TEntity> Save(TEntity entity)
-        {
-            var added = await DbSet.Value.AddAsync(entity);
-            return added.Entity;
-        }
+    public async Task<TEntity> FindById(Guid id)
+    {
+        return await DbSet.Value.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<TEntity> Save(TEntity entity)
+    {
+        var added = await DbSet.Value.AddAsync(entity);
+        return added.Entity;
     }
 }
