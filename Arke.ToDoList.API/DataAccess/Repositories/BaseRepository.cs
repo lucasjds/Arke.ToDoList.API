@@ -33,7 +33,7 @@ namespace Arke.ToDoList.API.DataAccess.Repositories
             return await DbSet.Value.ToListAsync();
         }
 
-        public async Task<TEntity> FindById(long id)
+        public async Task<TEntity> FindById(Guid id)
         {
             return await DbSet.Value.FirstOrDefaultAsync(x => x.Id == id);
         }

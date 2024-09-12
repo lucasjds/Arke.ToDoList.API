@@ -1,10 +1,12 @@
-﻿namespace Arke.ToDoList.API.Services.Interfaces;
+﻿using Arke.ToDoList.API.Models;
+
+namespace Arke.ToDoList.API.Services.Interfaces;
 
 public interface ITaskService
 {
     Task<IEnumerable<TaskModel>> FindAll();
-    Task<TaskModel> FindById(long id);
+    Task<TaskModel> FindById(Guid id);
     Task<TaskModel> Save(TaskModel taskModel);
-    Task<TaskModel> Update(long id, TaskModel taskModel);
-    Task Delete(long id);
+    Task<TaskModel> Update(Guid id, TaskModel taskModel);
+    Task Delete(Guid id);
 }
