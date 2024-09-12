@@ -1,4 +1,6 @@
-﻿namespace Arke.ToDoList.API.DataAccess.UnitOfWork;
+﻿using Arke.ToDoList.API.Utils;
+
+namespace Arke.ToDoList.API.DataAccess.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {

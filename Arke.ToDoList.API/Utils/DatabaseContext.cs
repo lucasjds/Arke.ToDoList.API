@@ -1,7 +1,7 @@
 ﻿using Arke.ToDoList.API.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Arke.ToDoList.API.DataAccess;
+namespace Arke.ToDoList.API.Utils;
 
 public class DatabaseContext : DbContext
 {

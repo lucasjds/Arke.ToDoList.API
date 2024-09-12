@@ -3,6 +3,7 @@ using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
 using Arke.ToDoList.API.DataAccess.UnitOfWork;
 using Arke.ToDoList.API.Models;
 using Arke.ToDoList.API.Services.Interfaces;
+using Arke.ToDoList.API.Utils.Exceptions;
 using AutoMapper;
 
 namespace Arke.ToDoList.API.Services;
@@ -25,14 +26,15 @@ public class TaskService : ITaskService
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TaskModel>> FindAll()
+    public async Task<IEnumerable<TaskModel>> FindAll()
     {
-        throw new NotImplementedException();
+        return _mapper.Map<IEnumerable<TaskModel>>(await _taskRepository.FindAll());
     }
 
-    public Task<TaskModel> FindById(Guid id)
+    public async Task<TaskModel> FindById(Guid id)
     {
-        throw new NotImplementedException();
+        var existing = await GetTask(id);
+        return _mapper.Map<TaskModel>(existing);
     }
 
     public Task<TaskModel> Save(TaskModel taskModel)
@@ -43,5 +45,16 @@ public class TaskService : ITaskService
     public Task<TaskModel> Update(Guid id, TaskModel taskModel)
     {
         throw new NotImplementedException();
+    }
+
+    private async Task<TaskEntity> GetTask(Guid id)
+    {
+        var existing = await _taskRepository.FindById(id);
+        if (existing == null)
+        {
+            throw new NotFoundException(nameof(TaskModel), id);
+        }
+
+        return existing;
     }
 }
