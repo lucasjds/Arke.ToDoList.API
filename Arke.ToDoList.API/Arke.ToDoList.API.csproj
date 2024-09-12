@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>false</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>f7db580c-dde0-435c-a3a1-cae28da5e3b7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Mappings\" />
     <Folder Include="Context\" />
     <Folder Include="Services\" />
     <Folder Include="Validation\" />
