@@ -1,0 +1,6 @@
+@Arke.ToDoList.API_HostAddress = http://localhost:5138
+
+GET {{Arke.ToDoList.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
