@@ -4,55 +4,55 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Arke.ToDoList.API.Controllers
+namespace Arke.ToDoList.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TaskController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class TaskController : ControllerBase
+    private readonly ITaskService _service;
+
+    public TaskController(ITaskService service)
     {
-        private readonly ITaskService _service;
+        _service = service;
+    }
 
-        public TaskController(ITaskService service)
-        {
-            _service = service;
-        }
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<TaskModel>>> FindAllTasksAsync()
+    {
+        return Ok(await _service.FindAllAsync());
+    }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TaskModel>>> FindAllTasksAsync()
-        {
-            return Ok(await _service.FindAllAsync());
-        }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<TaskModel>>> FindTaskByIdAsync([FromRoute] Guid id)
+    {
+        return Ok(await _service.FindByIdAsync(id));
+    }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<TaskModel>>> FindTaskByIdAsync([FromRoute] Guid id)
-        {
-            return Ok(await _service.FindByIdAsync(id));
-        }
+    [HttpPost]
+    public async Task<ActionResult<TaskModel>> SaveTaskAsync([FromBody] TaskModel task)
+    {
+        return StatusCode((int)HttpStatusCode.Created, await _service.SaveAsync(task));
+    }
 
-        [HttpPost]
-        public async Task<ActionResult<TaskModel>> SaveTaskAsync([FromBody] TaskModel task)
-        {
-            return StatusCode((int)HttpStatusCode.Created, await _service.SaveAsync(task));
-        }
+    [HttpPatch("{id}")]
+    public async Task<ActionResult<TaskModel>> PatchTaskAsync([FromRoute] Guid id, [FromBody] JsonPatchDocument<TaskModel> task)
+    {
+        var result = await _service.PatchAsync(id, task);
+        return Ok(result);
+    }
 
-        [HttpPatch("{id}")]
-        public async Task<ActionResult<TaskModel>> PatchTaskAsync([FromRoute] Guid id, [FromBody] JsonPatchDocument<TaskModel> task)
-        {
-            return Ok(await _service.PatchAsync(id, task));
-        }
+    [HttpPut("{id}")]
+    public async Task<ActionResult<TaskModel>> UpdateTaskAsync([FromRoute] Guid id, [FromBody] TaskModel taskModel)
+    {
+        var result = await _service.UpdateAsync(id, taskModel);
+        return Ok(result);
+    }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<TaskModel>> UpdateTaskAsync([FromRoute] Guid id, [FromBody] TaskModel taskModel)
-        {
-            await _service.UpdateAsync(id, taskModel);
-            return NoContent();
-        }
-
-        [HttpDelete("completed-tasks")]
-        public async Task<IActionResult> DeleteAllCompletedTasksAsync()
-        {
-            await _service.DeleteCompletedTasksAsync();
-            return NoContent();
-        }
+    [HttpDelete("completed-tasks")]
+    public async Task<IActionResult> DeleteAllCompletedTasksAsync()
+    {
+        await _service.DeleteCompletedTasksAsync();
+        return NoContent();
     }
 }

@@ -29,7 +29,10 @@ public class TaskService : ITaskService
         {
             _taskRepository.Delete(completedTask);
         }
-        await _unitOfWork.CommitAsync();
+        if (completedTasks != null && completedTasks.Any())
+        {
+            await _unitOfWork.CommitAsync();
+        }
     }
 
     public async Task<IEnumerable<TaskModel>> FindAllAsync()
@@ -113,13 +116,9 @@ public class TaskService : ITaskService
         {
             throw new GeneralErrorException(nameof(taskModel.Name), "Can't be null/empty.");
         }
-        if (string.IsNullOrEmpty(taskModel.Description))
+        if (!string.IsNullOrEmpty(taskModel.Description) && taskModel.Description.Length < 5)
         {
-            throw new GeneralErrorException(nameof(taskModel.Description), "Can't be null/empty.");
-        }
-        if (taskModel.Description.Length < 5)
-        {
-            throw new GeneralErrorException(nameof(taskModel.Description), "minimum length should be at least 5 characters");
+            throw new GeneralErrorException(nameof(taskModel.Description), "minimum length should be at least 5 characters.");
         }
     }
 }

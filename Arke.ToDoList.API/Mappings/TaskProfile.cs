@@ -2,14 +2,13 @@
 using Arke.ToDoList.API.Models;
 using AutoMapper;
 
-namespace Arke.ToDoList.API.Mappings
+namespace Arke.ToDoList.API.Mappings;
+
+public class TaskProfile : Profile
 {
-    public class TaskProfile : Profile
+    public TaskProfile()
     {
-        public TaskProfile()
-        {
-            CreateMap<TaskEntity, TaskModel>();
-            CreateMap<TaskModel, TaskEntity>();
-        }
+        CreateMap<TaskEntity, TaskModel>();
+        CreateMap<TaskModel, TaskEntity>();
     }
 }
