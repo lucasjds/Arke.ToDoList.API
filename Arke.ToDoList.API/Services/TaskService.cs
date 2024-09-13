@@ -63,7 +63,20 @@ public class TaskService : ITaskService
         return _mapper.Map<TaskModel>(taskEntity);
     }
 
-    public async Task<TaskModel> PatchTaskAsync(Guid id, JsonPatchDocument<TaskModel> task)
+    public async Task<TaskModel> UpdateAsync(Guid id, TaskModel taskModel)
+    {
+        Validations(taskModel);
+
+        var existing = await GetTask(id);
+        taskModel.Id = id;
+        _mapper.Map(taskModel, existing);
+
+        await _unitOfWork.CommitAsync();
+
+        return _mapper.Map<TaskModel>(existing);
+    }
+
+    public async Task<TaskModel> PatchAsync(Guid id, JsonPatchDocument<TaskModel> task)
     {
         var existing = await GetTask(id);
 

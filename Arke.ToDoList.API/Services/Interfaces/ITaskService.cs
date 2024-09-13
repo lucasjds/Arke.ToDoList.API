@@ -8,6 +8,7 @@ public interface ITaskService
     Task<IEnumerable<TaskModel>> FindAllAsync();
     Task<TaskModel> FindByIdAsync(Guid id);
     Task<TaskModel> SaveAsync(TaskModel taskModel);
-    Task<TaskModel> PatchTaskAsync(Guid id, JsonPatchDocument<TaskModel> taskModel);
+    Task<TaskModel> PatchAsync(Guid id, JsonPatchDocument<TaskModel> taskModel);
+    Task<TaskModel> UpdateAsync(Guid id, TaskModel taskModel);
     Task DeleteCompletedTasksAsync();
 }

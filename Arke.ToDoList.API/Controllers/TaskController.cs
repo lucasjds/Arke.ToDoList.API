@@ -38,7 +38,14 @@ namespace Arke.ToDoList.API.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<TaskModel>> PatchTaskAsync([FromRoute] Guid id, [FromBody] JsonPatchDocument<TaskModel> task)
         {
-            return Ok(await _service.PatchTaskAsync(id, task));
+            return Ok(await _service.PatchAsync(id, task));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TaskModel>> UpdateTaskAsync([FromRoute] Guid id, [FromBody] TaskModel taskModel)
+        {
+            await _service.UpdateAsync(id, taskModel);
+            return NoContent();
         }
 
         [HttpDelete("completed-tasks")]
