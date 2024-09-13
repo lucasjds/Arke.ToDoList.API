@@ -11,7 +11,6 @@ using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.JsonPatch;
 using Moq;
-using System;
 
 namespace Arke.ToDoList.Tests.Services;
 

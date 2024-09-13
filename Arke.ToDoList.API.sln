@@ -5,7 +5,13 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arke.ToDoList.API", "Arke.ToDoList.API\Arke.ToDoList.API.csproj", "{55982D03-1AC4-439B-B5F2-3C6A237C1576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arke.ToDoList.Tests", "Arke.ToDoList.Tests\Arke.ToDoList.Tests.csproj", "{1637A760-CA10-4DD4-9E1B-CA9D248DAE35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arke.ToDoList.Tests", "Arke.ToDoList.Tests\Arke.ToDoList.Tests.csproj", "{1637A760-CA10-4DD4-9E1B-CA9D248DAE35}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{1AB34A0E-A860-4102-B22E-C9959EB43BDD}"
+	ProjectSection(SolutionItems) = preProject
+		Docker\.dockerignore = Docker\.dockerignore
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

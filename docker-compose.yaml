@@ -1,0 +1,13 @@
+name: arke-toDoList
+
+services:
+  arke.todolist.api:
+    image: todoapi
+    build:
+      context: .
+      dockerfile: Arke.ToDoList.API/Dockerfile
+    ports:
+      - 6000:6000
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "http://0.0.0.0:6000"
