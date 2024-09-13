@@ -5,6 +5,7 @@ using Arke.ToDoList.API.Models;
 using Arke.ToDoList.API.Services.Interfaces;
 using Arke.ToDoList.API.Utils.Exceptions;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Arke.ToDoList.API.Services;
 
@@ -21,7 +22,7 @@ public class TaskService : ITaskService
         _mapper = mapper;
     }
 
-    public async Task DeleteCompletedTasks()
+    public async Task DeleteCompletedTasksAsync()
     {
         var completedTasks = await _taskRepository.GetAllCompletedTasks();
         foreach (var completedTask in completedTasks)
@@ -31,19 +32,21 @@ public class TaskService : ITaskService
         await _unitOfWork.CommitAsync();
     }
 
-    public async Task<IEnumerable<TaskModel>> FindAll()
+    public async Task<IEnumerable<TaskModel>> FindAllAsync()
     {
         return _mapper.Map<IEnumerable<TaskModel>>(await _taskRepository.FindAll());
     }
 
-    public async Task<TaskModel> FindById(Guid id)
+    public async Task<TaskModel> FindByIdAsync(Guid id)
     {
         var existing = await GetTask(id);
         return _mapper.Map<TaskModel>(existing);
     }
 
-    public async Task<TaskModel> Save(TaskModel taskModel)
+    public async Task<TaskModel> SaveAsync(TaskModel taskModel)
     {
+        Validations(taskModel);
+
         var taskEntity = await _taskRepository.Save(new TaskEntity());
 
         taskModel.Id = taskEntity.Id;
@@ -60,9 +63,20 @@ public class TaskService : ITaskService
         return _mapper.Map<TaskModel>(taskEntity);
     }
 
-    public Task<TaskModel> Update(Guid id, TaskModel taskModel)
+    public async Task<TaskModel> PatchTaskAsync(Guid id, JsonPatchDocument<TaskModel> task)
     {
-        throw new NotImplementedException();
+        var existing = await GetTask(id);
+
+        var taskModel = new TaskModel();
+        _mapper.Map(existing, taskModel);
+
+        task.ApplyTo(taskModel);
+
+        _mapper.Map(taskModel, existing);
+
+        await _unitOfWork.CommitAsync();
+
+        return _mapper.Map<TaskModel>(existing);
     }
 
     private async Task<TaskEntity> GetTask(Guid id)
@@ -74,5 +88,25 @@ public class TaskService : ITaskService
         }
 
         return existing;
+    }
+
+    private void Validations(TaskModel taskModel)
+    {
+        if (taskModel.Status == Enums.TaskStatusEnum.Done)
+        {
+            throw new GeneralErrorException(nameof(taskModel.Status), "Task can't be created as done.");
+        }
+        if (string.IsNullOrEmpty(taskModel.Name))
+        {
+            throw new GeneralErrorException(nameof(taskModel.Name), "Can't be null/empty.");
+        }
+        if (string.IsNullOrEmpty(taskModel.Description))
+        {
+            throw new GeneralErrorException(nameof(taskModel.Description), "Can't be null/empty.");
+        }
+        if (taskModel.Description.Length < 5)
+        {
+            throw new GeneralErrorException(nameof(taskModel.Description), "minimum length should be at least 5 characters");
+        }
     }
 }

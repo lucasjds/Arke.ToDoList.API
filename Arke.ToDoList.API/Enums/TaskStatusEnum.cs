@@ -1,5 +1,9 @@
-﻿namespace Arke.ToDoList.API.Enums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
+namespace Arke.ToDoList.API.Enums;
+
+[JsonConverter(typeof(StringEnumConverter))]
 public enum TaskStatusEnum
 {
     ToDo = 1,
