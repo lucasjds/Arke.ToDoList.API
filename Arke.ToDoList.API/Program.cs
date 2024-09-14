@@ -14,6 +14,14 @@ using Arke.ToDoList.API.Utils.Exceptions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 
 builder.Services.AddControllers(config =>
 {
@@ -43,11 +51,15 @@ builder.Services.AddDbContext<DatabaseContext>(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseDeveloperExceptionPage();
+app.UseExceptionHandler("/Home/Error");
+app.UseHsts();
+
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAllOrigins");
 app.UseAuthorization();
 
 app.MapControllers();

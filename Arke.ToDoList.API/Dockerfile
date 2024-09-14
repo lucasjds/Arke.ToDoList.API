@@ -4,7 +4,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
 USER app
-ENV ASPNETCORE_ENVIRONMENT=Development
 
 WORKDIR /app
 

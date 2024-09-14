@@ -7,7 +7,7 @@ using System.Net;
 namespace Arke.ToDoList.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _service;
