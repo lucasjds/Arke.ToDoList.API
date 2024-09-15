@@ -1,5 +1,8 @@
-﻿namespace Arke.ToDoList.API.Utils.Exceptions;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace Arke.ToDoList.API.Utils.Exceptions;
+
+[ExcludeFromCodeCoverage]
 public class NotFoundException : Exception
 {
     public NotFoundException(string entity, Guid id)

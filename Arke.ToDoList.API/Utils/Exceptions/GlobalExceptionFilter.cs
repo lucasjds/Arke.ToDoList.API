@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Arke.ToDoList.API.Utils.Exceptions;
 
+[ExcludeFromCodeCoverage]
 public class GlobalExceptionFilter : IAsyncExceptionFilter
 {
     public Task OnExceptionAsync(ExceptionContext context)

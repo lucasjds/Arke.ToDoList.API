@@ -1,5 +1,8 @@
-﻿namespace Arke.ToDoList.API.Utils.Exceptions;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace Arke.ToDoList.API.Utils.Exceptions;
+
+[ExcludeFromCodeCoverage]
 public class GeneralErrorException : Exception
 {
     public GeneralErrorException(string property, string messageError)

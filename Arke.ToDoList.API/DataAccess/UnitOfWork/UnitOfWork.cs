@@ -1,7 +1,9 @@
 ﻿using Arke.ToDoList.API.Context;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Arke.ToDoList.API.DataAccess.UnitOfWork;
 
+[ExcludeFromCodeCoverage]
 public class UnitOfWork : IUnitOfWork
 {
     private readonly DatabaseContext _dbContext;

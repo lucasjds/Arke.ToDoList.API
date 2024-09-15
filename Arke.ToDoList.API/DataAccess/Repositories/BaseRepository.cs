@@ -2,9 +2,11 @@
 using Arke.ToDoList.API.DataAccess.Entities;
 using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Arke.ToDoList.API.DataAccess.Repositories;
 
+[ExcludeFromCodeCoverage]
 public class BaseRepository<TEntity> : IBaseRepository<TEntity>
     where TEntity : class, IEntity
 {

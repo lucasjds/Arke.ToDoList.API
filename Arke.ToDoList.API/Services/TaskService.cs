@@ -48,6 +48,10 @@ public class TaskService : ITaskService
 
     public async Task<TaskModel> SaveAsync(TaskModel taskModel)
     {
+        if (taskModel.Status == Enums.TaskStatusEnum.Done)
+        {
+            throw new GeneralErrorException(nameof(taskModel.Status), "Task can't be created as done.");
+        }
         Validations(taskModel);
 
         var taskEntity = await _taskRepository.Save(new TaskEntity());
@@ -106,12 +110,9 @@ public class TaskService : ITaskService
         return existing;
     }
 
-    private void Validations(TaskModel taskModel)
+    private static void Validations(TaskModel taskModel)
     {
-        if (taskModel.Status == Enums.TaskStatusEnum.Done)
-        {
-            throw new GeneralErrorException(nameof(taskModel.Status), "Task can't be created as done.");
-        }
+        
         if (string.IsNullOrEmpty(taskModel.Name))
         {
             throw new GeneralErrorException(nameof(taskModel.Name), "Can't be null/empty.");
