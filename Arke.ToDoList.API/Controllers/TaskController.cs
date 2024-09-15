@@ -2,12 +2,14 @@
 using Arke.ToDoList.API.Shared.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
 namespace Arke.ToDoList.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[ExcludeFromCodeCoverage]
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _service;
