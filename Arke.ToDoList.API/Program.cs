@@ -7,8 +7,11 @@ using Arke.ToDoList.API.Domain.Entities;
 using Arke.ToDoList.API.Services;
 using Arke.ToDoList.API.Domain.Contracts;
 using Arke.ToDoList.API.Data.Sql;
+using Arke.ToDoList.API.Domain.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders().AddConsole();
 
 // Add services to the container.
 builder.Services.AddCors(options =>

@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
+using Arke.ToDoList.API.Domain.Exceptions;
 
-namespace Arke.ToDoList.API.Domain.Contracts;
+namespace Arke.ToDoList.API.Domain.Exceptions;
 
 [ExcludeFromCodeCoverage]
 public class GlobalExceptionFilter : IAsyncExceptionFilter
@@ -25,6 +26,6 @@ public class GlobalExceptionFilter : IAsyncExceptionFilter
                 StatusCode = StatusCodes.Status400BadRequest
             };
         }
-        return Task.CompletedTask;
+		return Task.CompletedTask;
     }
 }

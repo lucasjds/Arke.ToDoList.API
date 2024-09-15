@@ -14,7 +14,13 @@ public class UnitOfWork : IUnitOfWork
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
-    public Task<int> CommitAsync()
+	public async Task RollbackAsync()
+	{
+		_dbContext.ChangeTracker.Clear();
+		await Task.CompletedTask;
+	}
+
+	public Task<int> CommitAsync()
     {
         return _dbContext.SaveChangesAsync();
     }

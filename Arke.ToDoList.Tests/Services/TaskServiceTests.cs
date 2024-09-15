@@ -1,5 +1,6 @@
 ﻿using Arke.ToDoList.API.Domain.Contracts;
 using Arke.ToDoList.API.Domain.Entities;
+using Arke.ToDoList.API.Domain.Exceptions;
 using Arke.ToDoList.API.Domain.Mappings;
 using Arke.ToDoList.API.Services;
 using Arke.ToDoList.API.Shared.Enums;
@@ -8,6 +9,7 @@ using Arke.ToDoList.Tests.Utils;
 using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace Arke.ToDoList.Tests.Services;
@@ -16,13 +18,14 @@ public class TaskServiceTests
 {
     private readonly Mock<ITaskRepository> _mockTaskRepository = new();
     private readonly Mock<IUnitOfWork> _mockUnityOfWork = new();
+    private readonly Mock<ILogger<TaskService>> _taskServiceMock = new();
     private readonly TaskService _taskService;
 
     public TaskServiceTests()
     {
         _taskService = new TaskService(_mockUnityOfWork.Object,
                                         _mockTaskRepository.Object,
-                                        Mapper);
+                                        Mapper, _taskServiceMock.Object);
     }
 
     private static IMapper Mapper { get => new MapperConfiguration(mc => mc.AddMaps(typeof(TaskProfile).Assembly)).CreateMapper(); }
