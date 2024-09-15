@@ -1,4 +1,4 @@
-﻿using Arke.ToDoList.API.Models;
+﻿using Arke.ToDoList.API.Shared.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace Arke.ToDoList.API.Services.Interfaces;

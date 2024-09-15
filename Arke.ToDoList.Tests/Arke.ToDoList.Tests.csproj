@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Arke.ToDoList.API.Shared\Arke.ToDoList.API.Shared.csproj" />
     <ProjectReference Include="..\Arke.ToDoList.API\Arke.ToDoList.API.csproj" />
   </ItemGroup>
 

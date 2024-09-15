@@ -1,6 +1,6 @@
-﻿using Arke.ToDoList.API.Enums;
+﻿using Arke.ToDoList.API.Shared.Enums;
 
-namespace Arke.ToDoList.API.Models;
+namespace Arke.ToDoList.API.Shared.Models;
 
 public class TaskModel
 {

@@ -1,5 +1,5 @@
 ﻿using Arke.ToDoList.API.DataAccess.Entities;
-using Arke.ToDoList.API.Models;
+using Arke.ToDoList.API.Shared.Models;
 using AutoMapper;
 using System.Diagnostics.CodeAnalysis;
 

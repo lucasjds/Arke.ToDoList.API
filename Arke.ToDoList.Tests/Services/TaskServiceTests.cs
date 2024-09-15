@@ -1,10 +1,10 @@
 ﻿using Arke.ToDoList.API.DataAccess.Entities;
 using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
 using Arke.ToDoList.API.DataAccess.UnitOfWork;
-using Arke.ToDoList.API.Enums;
 using Arke.ToDoList.API.Mappings;
-using Arke.ToDoList.API.Models;
 using Arke.ToDoList.API.Services;
+using Arke.ToDoList.API.Shared.Enums;
+using Arke.ToDoList.API.Shared.Models;
 using Arke.ToDoList.API.Utils.Exceptions;
 using Arke.ToDoList.Tests.Utils;
 using AutoMapper;

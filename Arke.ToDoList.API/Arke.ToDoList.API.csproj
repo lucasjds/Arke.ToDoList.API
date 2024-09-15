@@ -22,4 +22,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Arke.ToDoList.API.Shared\Arke.ToDoList.API.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

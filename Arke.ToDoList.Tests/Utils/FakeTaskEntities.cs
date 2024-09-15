@@ -1,4 +1,5 @@
 ﻿using Arke.ToDoList.API.DataAccess.Entities;
+using Arke.ToDoList.API.Shared.Enums;
 using Bogus;
 
 namespace Arke.ToDoList.Tests.Utils;
@@ -11,7 +12,7 @@ internal class FakeTaskEntities
             .RuleFor(u => u.Id, f => f.Random.Guid())
             .RuleFor(u => u.Name, "Task of arke")
             .RuleFor(u => u.Description, "This is challenge requested by arke")
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status, TaskStatusEnum.ToDo)
             .Generate();
     }
 
@@ -21,7 +22,7 @@ internal class FakeTaskEntities
             .RuleFor(u => u.Id, id)
             .RuleFor(u => u.Name, "Task of arke")
             .RuleFor(u => u.Description, "This is challenge requested by arke")
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status, TaskStatusEnum.ToDo)
             .Generate();
     }
 
@@ -31,7 +32,7 @@ internal class FakeTaskEntities
             .RuleFor(u => u.Id, f => f.Random.Guid())
             .RuleFor(u => u.Name, f => f.Random.String())
             .RuleFor(u => u.Description, f => f.Random.String())
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status, TaskStatusEnum.ToDo)
             .Generate(5);
     }
 
@@ -41,7 +42,7 @@ internal class FakeTaskEntities
             .RuleFor(u => u.Id, f => f.Random.Guid())
             .RuleFor(u => u.Name, f => f.Random.String())
             .RuleFor(u => u.Description, f => f.Random.String())
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.Done)
+            .RuleFor(u => u.Status, TaskStatusEnum.Done)
             .Generate(5);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Arke.ToDoList.API.Models;
+﻿using Arke.ToDoList.API.Shared.Enums;
+using Arke.ToDoList.API.Shared.Models;
 using Bogus;
 
 namespace Arke.ToDoList.Tests.Utils;
@@ -10,7 +11,7 @@ internal class FakeTaskModels
         return new Faker<TaskModel>()
             .RuleFor(u => u.Name, "Task of arke")
             .RuleFor(u => u.Description, "This is challenge requested by arke")
-            .RuleFor(u => u.Status  , API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status  , TaskStatusEnum.ToDo)
             .Generate();
     }
 
@@ -20,7 +21,7 @@ internal class FakeTaskModels
             .RuleFor(u => u.Id, id)
             .RuleFor(u => u.Name, "Task of arke")
             .RuleFor(u => u.Description, "This is challenge requested by arke")
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status, TaskStatusEnum.ToDo)
             .Generate();
     }
 
@@ -29,7 +30,7 @@ internal class FakeTaskModels
         return new Faker<TaskModel>()
             .RuleFor(u => u.Name, f => f.Random.ToString())
             .RuleFor(u => u.Description, f => f.Random.ToString())
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.Done)
+            .RuleFor(u => u.Status, TaskStatusEnum.Done)
             .Generate();
     }
 
@@ -38,7 +39,7 @@ internal class FakeTaskModels
         return new Faker<TaskModel>()
             .RuleFor(u => u.Name, string.Empty)
             .RuleFor(u => u.Description, f => f.Random.ToString())
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status, TaskStatusEnum.ToDo)
             .Generate();
     }
 
@@ -47,7 +48,7 @@ internal class FakeTaskModels
         return new Faker<TaskModel>()
             .RuleFor(u => u.Name, f => f.Random.ToString())
             .RuleFor(u => u.Description, f => "1234")
-            .RuleFor(u => u.Status, API.Enums.TaskStatusEnum.ToDo)
+            .RuleFor(u => u.Status, TaskStatusEnum.ToDo)
             .Generate();
     }
 }

@@ -1,5 +1,5 @@
-﻿using Arke.ToDoList.API.Models;
-using Arke.ToDoList.API.Services.Interfaces;
+﻿using Arke.ToDoList.API.Services.Interfaces;
+using Arke.ToDoList.API.Shared.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

@@ -7,11 +7,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arke.ToDoList.API", "Arke.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arke.ToDoList.Tests", "Arke.ToDoList.Tests\Arke.ToDoList.Tests.csproj", "{1637A760-CA10-4DD4-9E1B-CA9D248DAE35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{1AB34A0E-A860-4102-B22E-C9959EB43BDD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Docker", "_Docker", "{1AB34A0E-A860-4102-B22E-C9959EB43BDD}"
 	ProjectSection(SolutionItems) = preProject
 		Docker\.dockerignore = Docker\.dockerignore
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{6FDECA54-4854-4275-A88C-2F61EB999FCC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{042317AB-B8D0-44A9-AE0B-207641E8F314}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F8C838E7-3EC8-4D99-8688-0A4F2FE72B2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{1B4BA0AF-33E1-4C9B-9354-29DB7139696F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F5E8A14-CCC9-403A-8778-A848AD260B14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arke.ToDoList.API.Shared", "Arke.ToDoList.API.Shared\Arke.ToDoList.API.Shared.csproj", "{F59A5284-D25B-43EB-9771-E25527D669A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +39,18 @@ Global
 		{1637A760-CA10-4DD4-9E1B-CA9D248DAE35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1637A760-CA10-4DD4-9E1B-CA9D248DAE35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1637A760-CA10-4DD4-9E1B-CA9D248DAE35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F59A5284-D25B-43EB-9771-E25527D669A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59A5284-D25B-43EB-9771-E25527D669A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59A5284-D25B-43EB-9771-E25527D669A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59A5284-D25B-43EB-9771-E25527D669A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55982D03-1AC4-439B-B5F2-3C6A237C1576} = {042317AB-B8D0-44A9-AE0B-207641E8F314}
+		{1637A760-CA10-4DD4-9E1B-CA9D248DAE35} = {7F5E8A14-CCC9-403A-8778-A848AD260B14}
+		{F59A5284-D25B-43EB-9771-E25527D669A5} = {6FDECA54-4854-4275-A88C-2F61EB999FCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D05C0A2F-0965-4067-BA98-74C08344EFFD}

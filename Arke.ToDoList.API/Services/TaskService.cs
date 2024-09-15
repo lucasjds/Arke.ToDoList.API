@@ -1,8 +1,9 @@
 ﻿using Arke.ToDoList.API.DataAccess.Entities;
 using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
 using Arke.ToDoList.API.DataAccess.UnitOfWork;
-using Arke.ToDoList.API.Models;
 using Arke.ToDoList.API.Services.Interfaces;
+using Arke.ToDoList.API.Shared.Enums;
+using Arke.ToDoList.API.Shared.Models;
 using Arke.ToDoList.API.Utils.Exceptions;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
@@ -48,7 +49,7 @@ public class TaskService : ITaskService
 
     public async Task<TaskModel> SaveAsync(TaskModel taskModel)
     {
-        if (taskModel.Status == Enums.TaskStatusEnum.Done)
+        if (taskModel.Status == TaskStatusEnum.Done)
         {
             throw new GeneralErrorException(nameof(taskModel.Status), "Task can't be created as done.");
         }

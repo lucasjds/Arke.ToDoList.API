@@ -1,4 +1,4 @@
-﻿using Arke.ToDoList.API.Enums;
+﻿using Arke.ToDoList.API.Shared.Enums;
 
 namespace Arke.ToDoList.API.DataAccess.Entities;
 
