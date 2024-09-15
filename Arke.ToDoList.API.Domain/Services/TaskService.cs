@@ -110,7 +110,6 @@ public class TaskService : ITaskService
 
     private static void Validations(TaskModel taskModel)
     {
-        
         if (string.IsNullOrEmpty(taskModel.Name))
         {
             throw new GeneralErrorException(nameof(taskModel.Name), "Can't be null/empty.");
