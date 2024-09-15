@@ -1,6 +1,5 @@
-﻿using Arke.ToDoList.API.Context;
-using Arke.ToDoList.API.DataAccess.Entities;
-using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
+﻿using Arke.ToDoList.API.Data.Sql;
+using Arke.ToDoList.API.Domain.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 

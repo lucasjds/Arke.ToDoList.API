@@ -1,10 +1,7 @@
-﻿using Arke.ToDoList.API.DataAccess.Entities;
-using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
-using Arke.ToDoList.API.DataAccess.UnitOfWork;
-using Arke.ToDoList.API.Services.Interfaces;
+﻿using Arke.ToDoList.API.Domain.Contracts;
+using Arke.ToDoList.API.Domain.Entities;
 using Arke.ToDoList.API.Shared.Enums;
 using Arke.ToDoList.API.Shared.Models;
-using Arke.ToDoList.API.Utils.Exceptions;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 

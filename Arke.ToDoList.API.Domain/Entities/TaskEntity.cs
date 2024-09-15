@@ -1,6 +1,7 @@
-﻿using Arke.ToDoList.API.Shared.Enums;
+﻿using Arke.ToDoList.API.Domain.Contracts;
+using Arke.ToDoList.API.Shared.Enums;
 
-namespace Arke.ToDoList.API.DataAccess.Entities;
+namespace Arke.ToDoList.API.Domain.Entities;
 
 public class TaskEntity : IEntity
 {
@@ -8,9 +9,5 @@ public class TaskEntity : IEntity
     public string Name { get; set; }
     public string Description { get; set; }
     public TaskStatusEnum Status { get; set; }
-
     public DateTime Created { get; set; }
-    public DateTime TodoTime { get; set; }
-    public DateTime InProgressTime { get; set; }
-    public DateTime DoneTime { get; set; }
 }

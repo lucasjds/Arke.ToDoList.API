@@ -1,4 +1,4 @@
-﻿using Arke.ToDoList.API.DataAccess.Entities;
+﻿using Arke.ToDoList.API.Domain.Entities;
 using Arke.ToDoList.API.Shared.Enums;
 using Bogus;
 

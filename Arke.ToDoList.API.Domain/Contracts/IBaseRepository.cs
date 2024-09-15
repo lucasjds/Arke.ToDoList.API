@@ -1,4 +1,4 @@
-﻿namespace Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
+﻿namespace Arke.ToDoList.API.Domain.Contracts;
 
 public interface IBaseRepository<TEntity>
    where TEntity : class

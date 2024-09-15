@@ -1,7 +1,7 @@
 ﻿using Arke.ToDoList.API.Shared.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
-namespace Arke.ToDoList.API.Services.Interfaces;
+namespace Arke.ToDoList.API.Domain.Contracts;
 
 public interface ITaskService
 {

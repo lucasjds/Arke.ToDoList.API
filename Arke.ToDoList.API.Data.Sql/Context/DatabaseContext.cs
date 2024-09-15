@@ -1,8 +1,8 @@
-﻿using Arke.ToDoList.API.DataAccess.Entities;
+﻿using Arke.ToDoList.API.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Arke.ToDoList.API.Context;
+namespace Arke.ToDoList.API.Data.Sql;
 
 [ExcludeFromCodeCoverage]
 public class DatabaseContext : DbContext

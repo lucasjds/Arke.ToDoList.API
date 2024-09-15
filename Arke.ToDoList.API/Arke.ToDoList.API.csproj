@@ -19,10 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Arke.ToDoList.API.Data.Sql\Arke.ToDoList.API.Data.Sql.csproj" />
+    <ProjectReference Include="..\Arke.ToDoList.API.Domain\Arke.ToDoList.API.Domain.csproj" />
     <ProjectReference Include="..\Arke.ToDoList.API.Shared\Arke.ToDoList.API.Shared.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
-﻿using Arke.ToDoList.API.DataAccess.Entities;
+﻿using Arke.ToDoList.API.Domain.Entities;
 
-namespace Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
+namespace Arke.ToDoList.API.Domain.Contracts;
 
 public interface ITaskRepository : IBaseRepository<TaskEntity>
 {

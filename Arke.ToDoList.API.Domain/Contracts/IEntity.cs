@@ -1,4 +1,4 @@
-﻿namespace Arke.ToDoList.API.DataAccess.Entities;
+﻿namespace Arke.ToDoList.API.Domain.Contracts;
 
 public interface IEntity
 {

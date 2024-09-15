@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Http;
 
-namespace Arke.ToDoList.API.Utils.Exceptions;
+namespace Arke.ToDoList.API.Domain.Contracts;
 
 [ExcludeFromCodeCoverage]
 public class GlobalExceptionFilter : IAsyncExceptionFilter

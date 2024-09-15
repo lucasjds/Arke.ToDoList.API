@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Arke.ToDoList.API.Utils.Exceptions;
+namespace Arke.ToDoList.API.Domain.Contracts;
 
 [ExcludeFromCodeCoverage]
 public class NotFoundException : Exception

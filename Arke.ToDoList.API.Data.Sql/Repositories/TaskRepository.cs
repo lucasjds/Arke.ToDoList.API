@@ -1,9 +1,9 @@
-﻿using Arke.ToDoList.API.Context;
-using Arke.ToDoList.API.DataAccess.Entities;
-using Arke.ToDoList.API.DataAccess.Repositories.Interfaces;
-using Arke.ToDoList.API.Shared.Enums;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
+using Arke.ToDoList.API.Domain.Entities;
+using Arke.ToDoList.API.Shared.Enums;
+using Arke.ToDoList.API.Domain.Contracts;
+using Arke.ToDoList.API.Data.Sql;
 
 namespace Arke.ToDoList.API.DataAccess.Repositories;
 
