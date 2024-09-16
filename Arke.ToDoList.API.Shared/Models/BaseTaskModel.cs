@@ -2,7 +2,7 @@
 
 namespace Arke.ToDoList.API.Shared.Models;
 
-public class TaskModel
+public class BaseTaskModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

@@ -34,7 +34,7 @@ public class TaskServiceTests
     public async Task Add_Successfull()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModel();
+        var taskModel = FakeTaskModels.GetFakeTaskModel<TaskModelWrite>();
         var task = FakeTaskEntities.GetFakeTask();
         _mockTaskRepository.Setup(x => x.Save(It.IsAny<TaskEntity>())).ReturnsAsync(task);
         // Act
@@ -50,7 +50,7 @@ public class TaskServiceTests
     public async Task Add_Unsuccessfull_WhenNameEmpty()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModelEmptyName();
+        var taskModel = FakeTaskModels.GetFakeTaskModelEmptyName<TaskModelWrite>();
         // Act
         var result = () => _taskService.SaveAsync(taskModel);
 
@@ -62,7 +62,7 @@ public class TaskServiceTests
     public async Task Add_Unsuccessfull_WhenDescriptionNotEmptyAndLengthLessThan5Chars()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModelDescriptionLessThan5Chars();
+        var taskModel = FakeTaskModels.GetFakeTaskModelDescriptionLessThan5Chars<TaskModelWrite>();
         // Act
         var result = () => _taskService.SaveAsync(taskModel);
 
@@ -74,7 +74,7 @@ public class TaskServiceTests
     public async Task Add_Unsuccessfull_WhenStatusDone()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModelDoneStatus();
+        var taskModel = FakeTaskModels.GetFakeTaskModelDoneStatus<TaskModelWrite>();
         // Act
         var result = () => _taskService.SaveAsync(taskModel);
 
@@ -86,7 +86,7 @@ public class TaskServiceTests
     public async Task Add_Unsuccessfull_WhenIdExists()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModel();
+        var taskModel = FakeTaskModels.GetFakeTaskModel<TaskModelWrite>();
         var task = FakeTaskEntities.GetFakeTask();
         _mockTaskRepository.Setup(x => x.Save(It.IsAny<TaskEntity>())).ReturnsAsync(task);
         _mockTaskRepository.Setup(x => x.FindById(It.IsAny<Guid>())).ReturnsAsync(task);
@@ -101,7 +101,7 @@ public class TaskServiceTests
     public async Task Update_Successfull()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModel();
+        var taskModel = FakeTaskModels.GetFakeTaskModel<TaskModelWrite>();
         var task = FakeTaskEntities.GetFakeTask();
         _mockTaskRepository.Setup(x => x.FindById(task.Id)).ReturnsAsync(task);
         // Act
@@ -117,13 +117,13 @@ public class TaskServiceTests
     public async Task Update_Unsuccessfull_WhenEntityNotFound()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModel();
+        var taskModel = FakeTaskModels.GetFakeTaskModel<TaskModelWrite>();
         var task = FakeTaskEntities.GetFakeTask();
         // Act
         var result = () => _taskService.UpdateAsync(task.Id, taskModel);
 
         // Assert
-        await result.Should().ThrowAsync<NotFoundException>().WithMessage($"TaskModel with Id: '{task.Id}' does not exist.");
+        await result.Should().ThrowAsync<NotFoundException>().WithMessage($"BaseTaskModel with Id: '{task.Id}' does not exist.");
     }
 
     [Fact]
@@ -131,7 +131,7 @@ public class TaskServiceTests
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var taskModel = FakeTaskModels.GetFakeTaskModelWithId(guid);
+        var taskModel = FakeTaskModels.GetFakeTaskModelWithId<TaskModelRead>(guid);
         var task = FakeTaskEntities.GetFakeTaskWithId(guid);
         _mockTaskRepository.Setup(x => x.FindById(guid)).ReturnsAsync(task);
         // Act
@@ -148,7 +148,7 @@ public class TaskServiceTests
     {
         // Arrange
         var guid = Guid.NewGuid();
-        var taskModel = FakeTaskModels.GetFakeTaskModelWithId(guid);
+        var taskModel = FakeTaskModels.GetFakeTaskModelWithId<TaskModelRead>(guid);
         var task = FakeTaskEntities.GetFakeTasks();
         _mockTaskRepository.Setup(x => x.FindAll()).ReturnsAsync(task);
 
@@ -179,11 +179,11 @@ public class TaskServiceTests
     public async Task Patch_Sucessfull_WhenChangingStatusToInProgress()
     {
         // Arrange
-        var taskModel = FakeTaskModels.GetFakeTaskModel();
+        var taskModel = FakeTaskModels.GetFakeTaskModel<TaskModelWrite>();
         var task = FakeTaskEntities.GetFakeTaskWithId(taskModel.Id);
         _mockTaskRepository.Setup(x => x.FindById(taskModel.Id)).ReturnsAsync(task);
-        var jsonobject = new JsonPatchDocument<TaskModel>();
-        var operation = new Microsoft.AspNetCore.JsonPatch.Operations.Operation<TaskModel> { op = "replace", path = "/status", value = "2" };
+        var jsonobject = new JsonPatchDocument<TaskModelWrite>();
+        var operation = new Microsoft.AspNetCore.JsonPatch.Operations.Operation<TaskModelWrite> { op = "replace", path = "/status", value = "2" };
         jsonobject.Operations.Add(operation);
 
         // Act

@@ -47,18 +47,18 @@ public class TaskService : ITaskService
 		}
 	}
 
-	public async Task<IEnumerable<TaskModel>> FindAllAsync()
+	public async Task<IEnumerable<TaskModelRead>> FindAllAsync()
 	{
-		return _mapper.Map<IEnumerable<TaskModel>>(await _taskRepository.FindAll());
+		return _mapper.Map<IEnumerable<TaskModelRead>>(await _taskRepository.FindAll());
 	}
 
-	public async Task<TaskModel> FindByIdAsync(Guid id)
+	public async Task<TaskModelRead> FindByIdAsync(Guid id)
 	{
 		var existing = await GetTask(id);
-		return _mapper.Map<TaskModel>(existing);
+		return _mapper.Map<TaskModelRead>(existing);
 	}
 
-	public async Task<TaskModel> SaveAsync(TaskModel taskModel)
+	public async Task<TaskModelRead> SaveAsync(TaskModelWrite taskModel)
 	{
 		if (taskModel.Status == TaskStatusEnum.Done)
 		{
@@ -70,6 +70,7 @@ public class TaskService : ITaskService
 
 		taskModel.Id = taskEntity.Id;
 		_mapper.Map(taskModel, taskEntity);
+        taskEntity.Created = DateTime.UtcNow;
 
 		var existing = await _taskRepository.FindById(taskEntity.Id);
 		if (existing != null)
@@ -80,10 +81,10 @@ public class TaskService : ITaskService
 		await _unitOfWork.CommitAsync();
 		_logger.LogInformation($"Created Task successfully.");
 
-		return _mapper.Map<TaskModel>(taskEntity);
+		return _mapper.Map<TaskModelRead>(taskEntity);
 	}
 
-	public async Task<TaskModel> UpdateAsync(Guid id, TaskModel taskModel)
+	public async Task<TaskModelRead> UpdateAsync(Guid id, TaskModelWrite taskModel)
 	{
 		Validations(taskModel);
 
@@ -91,17 +92,17 @@ public class TaskService : ITaskService
 		taskModel.Id = id;
 		_mapper.Map(taskModel, existing);
 
-		await _unitOfWork.CommitAsync();
+        await _unitOfWork.CommitAsync();
 
 		_logger.LogInformation($"Update Task successfully.");
-		return _mapper.Map<TaskModel>(existing);
+		return _mapper.Map<TaskModelRead>(existing);
 	}
 
-	public async Task<TaskModel> PatchAsync(Guid id, JsonPatchDocument<TaskModel> task)
+	public async Task<TaskModelRead> PatchAsync(Guid id, JsonPatchDocument<TaskModelWrite> task)
 	{
 		var existing = await GetTask(id);
 
-		var taskModel = new TaskModel();
+		var taskModel = new TaskModelWrite();
 		_mapper.Map(existing, taskModel);
 
 		task.ApplyTo(taskModel);
@@ -110,7 +111,7 @@ public class TaskService : ITaskService
 
 		await _unitOfWork.CommitAsync();
 		_logger.LogInformation($"Patch Task successfully.");
-		return _mapper.Map<TaskModel>(existing);
+		return _mapper.Map<TaskModelRead>(existing);
 	}
 
 	private async Task<TaskEntity> GetTask(Guid id)
@@ -118,13 +119,13 @@ public class TaskService : ITaskService
 		var existing = await _taskRepository.FindById(id);
 		if (existing == null)
 		{
-			throw new NotFoundException(nameof(TaskModel), id);
+			throw new NotFoundException(nameof(BaseTaskModel), id);
 		}
 
 		return existing;
 	}
 
-	private static void Validations(TaskModel taskModel)
+	private static void Validations(TaskModelWrite taskModel)
 	{
 		if (string.IsNullOrEmpty(taskModel.Name))
 		{

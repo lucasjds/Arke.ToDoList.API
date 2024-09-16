@@ -10,7 +10,10 @@ public class TaskProfile : Profile
 {
     public TaskProfile()
     {
-        CreateMap<TaskEntity, TaskModel>();
-        CreateMap<TaskModel, TaskEntity>();
+        CreateMap<TaskEntity, TaskModelWrite>();
+        CreateMap<TaskModelWrite, TaskEntity>();
+
+        CreateMap<TaskEntity, TaskModelRead>();
+        CreateMap<TaskModelRead, TaskEntity>();
     }
 }

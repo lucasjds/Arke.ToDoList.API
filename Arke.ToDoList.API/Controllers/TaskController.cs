@@ -20,32 +20,32 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TaskModel>>> FindAllTasksAsync()
+    public async Task<ActionResult<IEnumerable<TaskModelRead>>> FindAllTasksAsync()
     {
         return Ok(await _service.FindAllAsync());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<IEnumerable<TaskModel>>> FindTaskByIdAsync([FromRoute] Guid id)
+    public async Task<ActionResult<IEnumerable<TaskModelRead>>> FindTaskByIdAsync([FromRoute] Guid id)
     {
         return Ok(await _service.FindByIdAsync(id));
     }
 
     [HttpPost]
-    public async Task<ActionResult<TaskModel>> SaveTaskAsync([FromBody] TaskModel task)
+    public async Task<ActionResult<TaskModelRead>> SaveTaskAsync([FromBody] TaskModelWrite task)
     {
         return StatusCode((int)HttpStatusCode.Created, await _service.SaveAsync(task));
     }
 
     [HttpPatch("{id}")]
-    public async Task<ActionResult<TaskModel>> PatchTaskAsync([FromRoute] Guid id, [FromBody] JsonPatchDocument<TaskModel> task)
+    public async Task<ActionResult<TaskModelRead>> PatchTaskAsync([FromRoute] Guid id, [FromBody] JsonPatchDocument<TaskModelWrite> task)
     {
         var result = await _service.PatchAsync(id, task);
         return Ok(result);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<TaskModel>> UpdateTaskAsync([FromRoute] Guid id, [FromBody] TaskModel taskModel)
+    public async Task<ActionResult<TaskModelRead>> UpdateTaskAsync([FromRoute] Guid id, [FromBody] TaskModelWrite taskModel)
     {
         var result = await _service.UpdateAsync(id, taskModel);
         return Ok(result);

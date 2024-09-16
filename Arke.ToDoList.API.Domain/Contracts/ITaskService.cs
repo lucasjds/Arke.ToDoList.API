@@ -5,10 +5,10 @@ namespace Arke.ToDoList.API.Domain.Contracts;
 
 public interface ITaskService
 {
-    Task<IEnumerable<TaskModel>> FindAllAsync();
-    Task<TaskModel> FindByIdAsync(Guid id);
-    Task<TaskModel> SaveAsync(TaskModel taskModel);
-    Task<TaskModel> PatchAsync(Guid id, JsonPatchDocument<TaskModel> taskModel);
-    Task<TaskModel> UpdateAsync(Guid id, TaskModel taskModel);
+    Task<IEnumerable<TaskModelRead>> FindAllAsync();
+    Task<TaskModelRead> FindByIdAsync(Guid id);
+    Task<TaskModelRead> SaveAsync(TaskModelWrite taskModel);
+    Task<TaskModelRead> PatchAsync(Guid id, JsonPatchDocument<TaskModelWrite> taskModel);
+    Task<TaskModelRead> UpdateAsync(Guid id, TaskModelWrite taskModel);
     Task DeleteCompletedTasksAsync();
 }
