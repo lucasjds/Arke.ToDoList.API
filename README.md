@@ -5,7 +5,7 @@ The **Arke ToDoList** Challenge is designed to run autonomously, in a container,
 The Arke ToDoList Challenge is:
 * **Autonomous**: The program runs separately from any other system.
 * **Testable**: The program will give a detailed report with the code coverage. This report is inside Tests project.
-* **Scalable**: The program can be a microservice and the scructure of the program is well-designed. This facilitates scalability, maitinaning a modular and decoupled architecture.
+* **Scalable**: The program can be a microservice, uses CQRS pattern, and the scructure of the program is well-designed. This facilitates scalability, maitinaning a modular and decoupled architecture.
 
 # Getting Started
 Before starting, you require to have installed:
