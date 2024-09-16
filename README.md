@@ -1,5 +1,6 @@
 # Introduction 
 The **Arke ToDoList** Challenge is designed to run autonomously, in a container, or as a standalone program, and wait for input from its corresponding API. 
+**In the final section of this readMe I put some ideas on how we could improve the code. Please, read carefully.**
 
 The Arke ToDoList Challenge is:
 * **Autonomous**: The program runs separately from any other system.
@@ -60,11 +61,12 @@ FluentAssertions provides us an easy way to assert the result comparing entire o
 # Code Coverage
 Inside the `Arke.ToDoList.API\Arke.ToDoList.Tests`, it is found a report on the Code Coverage. To keep it simple, only the Business Logic was covered.
 
-# Things to Improve
-1. I could have used FluentValidations to have a more scalable application. By doing that, I would have separated the validation from the TaskService, for example, and would be applying one responsaiblity principle of SOLID.
-2. To document, I could have used stylecop. By Doing that I could have documennted the Interfaces and all the files with a brief explanation
-3. I could have created a nuget package of Arke.ToDoList.Shared. By doing that, other applications - such as the front end - could use the classes in this project. A good example is TaskModel that can be shared with the front end.
-4. I could have created unit tests for the controllers.
+# Things to Improve (All the things below I couldn't due lack of time, but they were in my target)
+1. I could have applied **CQRS** creating a TaskModelWrite and a TaskModelRead. Maybe the client wants to save the Created datetime of that Task. That would be useful for that. The TaskModelWrite would have the TaskModelBase properties and TaskModelRead would have the TaskModelBase plus DateTimeCreated property. By doing that we separate the models and write actions like POST and PUT would use the TaskModelWrite as parameter in the controller. Read Actions, GET verbs, would use as parameter TaskModelRead. By doing that you make your code more scalable and flexible. 
+2. I could have used FluentValidations to have a more scalable application. By doing that, I would have separated the validation from the TaskService, for example, and would be applying one responsaiblity principle of SOLID.
+3. To document, I could have used stylecop. By Doing that I could have documennted the Interfaces and all the files with a brief explanation
+4. I could have created a nuget package of Arke.ToDoList.Shared. By doing that, other applications - such as the front end - could use the classes in this project. A good example is TaskModel that can be shared with the front end.
+5. I could have created unit tests for the controllers.
    
 
 
