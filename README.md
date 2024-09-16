@@ -48,9 +48,10 @@ Domain-Based Architecture: DDD provides a solid foundation for system architectu
 Domain Documentation: The domain model serves as a living documentation that describes the system’s structure and behavior in detail and is easy to understand.
 Training and Onboarding: Eases the training of new developers and team members, as the domain and system logic are clearly represented in the code.
 
-## Clean Code and SOLID principles
+## Design Pattern, Clean Code and SOLID principles
 SOLID: With this structure, the solid principle is applied. It is noticed the principles: LSP, Interface Segregation Principle, and Dependency Inversion.
 Clean Code: Small methods, good exception handling, one responsability principle, and usage of abstraction were applied.
+Design Pattern: It was applied **CQRS** creating a TaskModelWrite and a TaskModelRead. Maybe the client wants to save the Created datetime of that Task. That would be useful for that. The TaskModelWrite would have the TaskModelBase properties and TaskModelRead would have the TaskModelBase plus DateTimeCreated property. By doing that we separate the models and write actions like POST and PUT would use the TaskModelWrite as parameter in the controller. Read Actions, GET verbs, would use as parameter TaskModelRead. By doing that you make your code more scalable and flexible. Also, It was applied singleton, repositories
 ## Database
 The Database used is in-memory Database.
 ## ORM
@@ -62,11 +63,11 @@ FluentAssertions provides us an easy way to assert the result comparing entire o
 Inside the `Arke.ToDoList.API\Arke.ToDoList.Tests`, it is found a report on the Code Coverage. To keep it simple, only the Business Logic was covered.
 
 # Things to Improve (All the things below I couldn't do due to lack of time, but they were in my target)
-1. I could have applied **CQRS** creating a TaskModelWrite and a TaskModelRead. Maybe the client wants to save the Created datetime of that Task. That would be useful for that. The TaskModelWrite would have the TaskModelBase properties and TaskModelRead would have the TaskModelBase plus DateTimeCreated property. By doing that we separate the models and write actions like POST and PUT would use the TaskModelWrite as parameter in the controller. Read Actions, GET verbs, would use as parameter TaskModelRead. By doing that you make your code more scalable and flexible. 
-2. I could have used FluentValidations to have a more scalable application. By doing that, I would have separated the validation from the TaskService, for example, and would be applying one responsaiblity principle of SOLID.
-3. To document, I could have used stylecop. By Doing that I could have documennted the Interfaces and all the files with a brief explanation
-4. I could have created a nuget package of Arke.ToDoList.Shared. By doing that, other applications - such as the front end - could use the classes in this project. A good example is TaskModel that can be shared with the front end.
-5. I could have created unit tests for the controllers.
+
+1. I could have used FluentValidations to have a more scalable application. By doing that, I would have separated the validation from the TaskService, for example, and would be applying one responsaiblity principle of SOLID.
+2. To document, I could have used stylecop. By Doing that I could have documennted the Interfaces and all the files with a brief explanation
+3. I could have created a nuget package of Arke.ToDoList.Shared. By doing that, other applications - such as the front end - could use the classes in this project. A good example is TaskModel that can be shared with the front end.
+4. I could have created unit tests for the controllers.
    
 
 
