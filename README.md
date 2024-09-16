@@ -50,7 +50,9 @@ Training and Onboarding: Eases the training of new developers and team members, 
 
 ## Design Pattern, Clean Code and SOLID principles
 SOLID: With this structure, the solid principle is applied. It is noticed the principles: LSP, Interface Segregation Principle, and Dependency Inversion.
+
 Clean Code: Small methods, good exception handling, one responsability principle, and usage of abstraction were applied.
+
 Design Pattern: It was applied **CQRS** creating a TaskModelWrite and a TaskModelRead. Maybe the client wants to save the Created datetime of that Task. That would be useful for that. The TaskModelWrite would have the TaskModelBase properties and TaskModelRead would have the TaskModelBase plus DateTimeCreated property. By doing that we separate the models and write actions like POST and PUT would use the TaskModelWrite as parameter in the controller. Read Actions, GET verbs, would use as parameter TaskModelRead. By doing that you make your code more scalable and flexible. Also, It was applied singleton, repositories
 ## Database
 The Database used is in-memory Database.
