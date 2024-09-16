@@ -5,7 +5,7 @@ The **Arke ToDoList** Challenge is designed to run autonomously, in a container,
 The Arke ToDoList Challenge is:
 * **Autonomous**: The program runs separately from any other system.
 * **Testable**: The program will give a detailed report with the code coverage. This report is inside Tests project.
-* **Scalable**: The program can be a microservice, uses CQRS pattern, and the scructure of the program is well-designed. This facilitates scalability, maitinaning a modular and decoupled architecture.
+* **Scalable**: The program can be a microservice, and the scructure of the program is well-designed. This facilitates scalability, maitinaning a modular and decoupled architecture.
 
 # Getting Started
 Before starting, you require to have installed:
@@ -53,7 +53,7 @@ SOLID: With this structure, the solid principle is applied. It is noticed the pr
 
 Clean Code: Small methods, good exception handling, one responsability principle, and usage of abstraction were applied.
 
-Design Pattern: It was applied **CQRS** creating a TaskModelWrite and a TaskModelRead. Maybe the client wants to save the Created datetime of that Task. That would be useful for that. The TaskModelWrite would have the TaskModelBase properties and TaskModelRead would have the TaskModelBase plus DateTimeCreated property. By doing that we separate the models and write actions like POST and PUT would use the TaskModelWrite as parameter in the controller. Read Actions, GET verbs, would use as parameter TaskModelRead. By doing that you make your code more scalable and flexible. Also, It was applied singleton, repositories
+Design Pattern: It was applied a bit of **CQRS** (it is not the CQRS with Create and Read Commands) creating a TaskModelWrite and a TaskModelRead. Maybe the client wants to save the Created datetime of that Task. That would be useful for that. The TaskModelWrite would have the TaskModelBase properties and TaskModelRead would have the TaskModelBase plus DateTimeCreated property. By doing that we separate the models and write actions like POST and PUT would use the TaskModelWrite as parameter in the controller. Read Actions, GET verbs, would use as parameter TaskModelRead. By doing that you make your code more scalable and flexible.  Also, It was applied singleton, repositories
 ## Database
 The Database used is in-memory Database.
 ## ORM
